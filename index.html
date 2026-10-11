@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Mica: turning strangers to sweethearts. Find me on Instagram and Facebook.">
+<title>Mica's Little Corner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&family=Figtree:wght@400;500;600&display=swap">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/brands.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/solid.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/fontawesome.min.js"></script>
+<style>
+/* Layout: one soft column on a blush ground — bow crest, script name, pill links in pastel tints, floating sparkles. */
+:root {
+  --bg: #fdf1f4;
+  --bg-2: #f7e4f3;
+  --card: #fffafb;
+  --fg: #4a2a3a;
+  --muted: #9a6f82;
+  --rose: #e46f98;
+  --rose-soft: #f9c9d9;
+  --lilac: #c7a6f0;
+  --line: #f2cfdc;
+  --script: "Pinyon Script", "Snell Roundhand", cursive;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Figtree", "Helvetica Neue", Arial, sans-serif;
+}
+/* Single light look by design: always blush pink, even when the viewer's device is in dark mode. */
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(60% 40% at 15% 0%, color-mix(in oklab, var(--rose-soft) 70%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 100% 30%, color-mix(in oklab, var(--lilac) 25%, transparent), transparent 70%),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+  background-color: var(--bg);
+  background-attachment: fixed;
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 16px; line-height: 1.55;
+  padding: 0 18px;
+  overflow-x: hidden;
+}
+
+.sparkles { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.sparkles span {
+  position: absolute; color: var(--rose); opacity: .5;
+  animation: twinkle 3.6s ease-in-out infinite;
+}
+@keyframes twinkle { 50% { opacity: .15; transform: scale(.7) rotate(20deg); } }
+
+main {
+  position: relative; z-index: 1;
+  max-width: 460px; margin: 0 auto;
+  padding-block: 56px 40px;
+  display: flex; flex-direction: column; gap: 32px;
+}
+
+header { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+.portrait {
+  position: relative; width: 112px; height: 112px; margin-bottom: 10px;
+}
+.portrait .ring {
+  width: 100%; height: 100%; border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--rose-soft), color-mix(in oklab, var(--lilac) 45%, var(--card)));
+  border: 3px solid var(--card);
+  box-shadow: 0 0 0 2px var(--rose-soft), 0 10px 30px -10px color-mix(in oklab, var(--rose) 60%, transparent);
+  font-family: var(--script); font-size: 56px; color: var(--rose); line-height: 1;
+  padding-top: 8px;
+}
+.portrait .bow { position: absolute; top: -18px; left: 50%; transform: translateX(-50%) rotate(-6deg); width: 64px; color: var(--rose); filter: drop-shadow(0 2px 3px color-mix(in oklab, var(--rose) 35%, transparent)); }
+
+h1 {
+  margin: 0; font-family: var(--script); font-weight: 400;
+  font-size: clamp(64px, 18vw, 84px); line-height: .95; color: var(--fg);
+}
+.tagline { margin: 0; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--muted); }
+.bio { margin: 6px 0 0; max-width: 34ch; color: var(--fg); opacity: .85; text-wrap: pretty; }
+.hello { margin: 4px 0 -6px; font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--rose); }
+.bio .sig { color: var(--rose); }
+
+/* intro sequence: ring pops, bow drops and wiggles, greeting fades, name writes itself in, then text settles */
+.portrait .ring { animation: ringPop .7s cubic-bezier(.3,1.5,.5,1) both; }
+@keyframes ringPop { from { transform: scale(.6); opacity: 0; } }
+.portrait .bow { animation: bowDrop .9s cubic-bezier(.3,1.6,.5,1) .35s both, bowWiggle 4s ease-in-out 1.6s infinite; transform-origin: 50% 45%; }
+@keyframes bowDrop { from { transform: translate(-50%, -40px) rotate(-30deg); opacity: 0; } }
+@keyframes bowWiggle { 0%, 88%, 100% { transform: translateX(-50%) rotate(-6deg); } 92% { transform: translateX(-50%) rotate(4deg); } 96% { transform: translateX(-50%) rotate(-10deg); } }
+.hello { animation: rise .6s ease .6s both; }
+h1 { animation: write 1.4s cubic-bezier(.6,.1,.3,1) .8s both; }
+@keyframes write { from { clip-path: inset(-20% 100% -20% 0); } to { clip-path: inset(-20% -5% -20% 0); } }
+.tagline { animation: rise .6s ease 1.8s both; }
+.bio { animation: rise .6s ease 2.9s both; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+.tagline .strangers { position: relative; display: inline-block; color: var(--muted); }
+.tagline .strangers::after { /* pink strike that draws across "strangers" */
+  content: ""; position: absolute; left: -2px; right: -2px; top: 55%; height: 2px; border-radius: 2px;
+  background: var(--rose); transform: scaleX(0); transform-origin: left;
+  animation: strike .45s ease 2.3s forwards;
+}
+@keyframes strike { to { transform: scaleX(1); } }
+.tagline .sweet { position: relative; display: inline-block; color: var(--rose); font-weight: 500; animation: sweet .6s cubic-bezier(.3,1.6,.5,1) 2.6s both; }
+@keyframes sweet { from { opacity: 0; transform: translateY(6px) scale(.85); } }
+.tagline .pop { position: absolute; top: -12px; right: -14px; font-size: 13px; font-style: normal; animation: heart .7s cubic-bezier(.3,1.8,.5,1) 3s both; }
+@keyframes heart { from { opacity: 0; transform: scale(0) rotate(-30deg); } }
+
+.section-label {
+  margin: 0 0 12px; text-align: center;
+  font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 18px; color: var(--rose);
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::before, .section-label::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line)); }
+.section-label::after { transform: scaleX(-1); }
+
+.links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.pill {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 16px 12px 12px; border-radius: 999px;
+  background: var(--card); border: 1px solid var(--line);
+  color: inherit; text-decoration: none;
+  box-shadow: 0 4px 14px -8px color-mix(in oklab, var(--rose) 45%, transparent);
+  transition: transform .25s cubic-bezier(.3,1.6,.5,1), box-shadow .25s, border-color .25s;
+  animation: pop .6s cubic-bezier(.3,1.4,.5,1) backwards;
+  animation-delay: calc(var(--i) * 90ms + 3.1s);
+}
+@keyframes pop { from { transform: translateY(8px) scale(.97); opacity: .4; } }
+.pill:hover { transform: translateY(-2px) scale(1.015); border-color: var(--tint); box-shadow: 0 10px 22px -10px var(--tint); }
+.pill:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+.pill .ico {
+  flex: none; width: 40px; height: 40px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 18px;
+  color: var(--tint);
+  background: color-mix(in oklab, var(--tint) 16%, var(--card));
+}
+.pill .name { flex: 1; font-weight: 600; font-size: 16px; }
+.pill .heart { flex: none; color: var(--line); font-size: 14px; transition: color .25s, transform .25s; }
+.pill:hover .heart { color: var(--rose); transform: scale(1.25); }
+
+footer {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  font-size: 13px; color: var(--muted); text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="sparkles" aria-hidden="true" id="sparkles"></div>
+
+<main>
+  <header>
+    <div class="portrait" aria-hidden="true">
+      <svg class="bow" viewBox="0 0 64 34" fill="currentColor">
+        <path d="M32 15c-6-9-20-15-27-11-5 3-4 18 2 20 6 2 18-3 25-9z"/>
+        <path d="M32 15c6-9 20-15 27-11 5 3 4 18-2 20-6 2-18-3-25-9z"/>
+        <path d="M29 16l-8 17 6-2 4 3 1-18zM35 16l8 17-6-2-4 3-1-18z" opacity=".85"/>
+        <ellipse cx="32" cy="15.5" rx="5" ry="5.5"/>
+      </svg>
+      <div class="ring">M</div>
+    </div>
+    <p class="hello">hi, I'm</p>
+    <h1>Mica</h1>
+    <p class="tagline">turning <span class="strangers">strangers</span> to <span class="sweet">sweethearts<span class="pop" aria-hidden="true">♡</span></span></p>
+    <p class="bio">Say hi, follow along, and let's be friends <span class="sig">♡</span></p>
+  </header>
+
+  <section aria-labelledby="lbl-find">
+    <h2 class="section-label" id="lbl-find">find me here</h2>
+    <ul class="links" id="links"></ul>
+  </section>
+
+  <footer>
+    <span>© <span id="yr"></span> Mica</span>
+  </footer>
+</main>
+
+<script>
+/* ===== Edit Mica's links here ===== */
+const LINKS = [
+  { name: "Instagram", icon: "fa-brands fa-instagram",  url: "https://instagram.com/yourhandle", tint: "#e4588f" },
+  { name: "Facebook",  icon: "fa-brands fa-facebook-f", url: "https://facebook.com/yourprofile", tint: "#6f8fe8" },
+];
+/* ================================== */
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const ul = document.getElementById("links");
+LINKS.forEach((l, i) => {
+  const li = document.createElement("li");
+  li.innerHTML = `<a class="pill" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer" style="--tint:${esc(l.tint)};--i:${i}">
+    <span class="ico" aria-hidden="true"><i class="${esc(l.icon)}"></i></span>
+    <span class="name">${esc(l.name)}</span>
+    <span class="heart" aria-hidden="true">♥</span></a>`;
+  ul.appendChild(li);
+});
+
+// scattered sparkles
+const sp = document.getElementById("sparkles");
+const spots = [[8,12],[88,8],[14,46],[92,40],[6,78],[84,72],[50,4],[70,92],[28,90]];
+spots.forEach(([x, y], i) => {
+  const s = document.createElement("span");
+  s.textContent = i % 3 ? "✦" : "♡";
+  s.style.left = x + "%"; s.style.top = y + "%";
+  s.style.fontSize = (10 + (i * 5) % 12) + "px";
+  s.style.animationDelay = (i * 0.4) + "s";
+  sp.appendChild(s);
+});
+
+document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
